@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SplitFlow | Smart Shared Finances</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    vertical-align: middle
+    }
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1)
+    }
+.noise-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCCcrRy3W2sAdOJPf417oFm9Q2mLMY36-cgUjXzxkcKnW4z7xAODE3YMUYuL6VdO1AQuq6tL3BYh7efW3nH8Ii9yTUjJMA4wzPvb_GPgIcyjauFXbsRwTQ-gjCMDEIkFGILtHH5aS5GD5azgFZKVc23vplLhCTFxvLMfQDT4rKRV2ZQioq4q4KdGJ_85-WqI5DOV2cOqzpXTSwhhNJA9H0L8H7fKx5eXw-PAYX0G4GU64Klqhh4Fik8Sqy992jLSQvdweIjN0hubGX4);
+    opacity: 0.02;
+    pointer-events: none
+    }
+::-webkit-scrollbar {
+    width: 6px
+    }
+::-webkit-scrollbar-track {
+    background: transparent
+    }
+::-webkit-scrollbar-thumb {
+    background: #c7c4d8;
+    border-radius: 10px
+    }</style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#00714d",
+                      "secondary-container": "#6cf8bb",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#0f0069",
+                      "on-surface-variant": "#464555",
+                      "secondary-fixed-dim": "#4edea3",
+                      "surface-container-highest": "#e4e1ee",
+                      "surface-container-high": "#eae6f4",
+                      "on-secondary-fixed": "#002113",
+                      "primary": "#3525cd",
+                      "surface-container-low": "#f5f2ff",
+                      "on-background": "#1b1b24",
+                      "on-tertiary-fixed": "#40000d",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-surface": "#1b1b24",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#ffdadb",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fcf8ff",
+                      "outline": "#777587",
+                      "tertiary-container": "#bf0f3c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-tertiary-container": "#ffd0d2",
+                      "inverse-surface": "#302f39",
+                      "secondary": "#006c49",
+                      "on-error": "#ffffff",
+                      "tertiary": "#95002b",
+                      "on-secondary-fixed-variant": "#005236",
+                      "surface": "#fcf8ff",
+                      "inverse-on-surface": "#f3effc",
+                      "outline-variant": "#c7c4d8",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "primary-fixed": "#e2dfff",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#c3c0ff",
+                      "surface-container": "#f0ecf9",
+                      "error": "#ba1a1a",
+                      "background": "#fcf8ff",
+                      "surface-dim": "#dcd8e5",
+                      "surface-variant": "#e4e1ee",
+                      "primary-container": "#4f46e5",
+                      "on-primary-container": "#dad7ff",
+                      "surface-tint": "#4d44e3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "xl": "40px",
+                      "xs": "4px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "body-md": ["Geist"],
+                      "body-lg": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "label-md": ["Geist"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- Sidebar Navigation (Desktop) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[240px] z-50 bg-surface-container-low/80 backdrop-blur-xl border-r border-outline-variant/10 shadow-xl flex-col gap-sm p-md transition-transform duration-300" id="main-sidebar">
+<div class="mb-lg px-sm">
+<span class="font-headline-md text-headline-md font-black text-primary">SplitFlow</span>
+</div>
+<div class="flex items-center gap-md p-sm mb-lg">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-fixed border border-primary-container">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRmqTxJ_kropDRazuUcGWwbaH7XOfmLAl_CUgYXqdGYosChwqUnYP1w4qtj5-tTKkFwBNwgo-EOIFrz3QBB8tua2Z0qNa3RbKpgWmWAi5Qken3JT_PoJN54P6DDzxw8lFgij7tnVt-iXKqwaX5kUNHRC1N66vlANfB2kRLyrcFDNU0-cMBdJb_qCd5-Q-B8RbjdC1pzRnFFHu-gOLSToRl5o_UWvJ5wb5yMM9RqXS32paHqirypq4RBg25cSAxzoEG21SiCUqBFX_Q"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-on-surface">Alex Morgan</span>
+<span class="text-[11px] text-on-surface-variant font-medium">Pro Account</span>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<!-- Active State Dashboard -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-semibold rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Groups</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Expenses</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">handshake</span>
+<span class="font-label-md text-label-md">Settlements</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-label-md text-label-md">CSV Import</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant/10 pt-md flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-40 bg-surface/70 backdrop-blur-md border-b border-outline-variant/10 shadow-sm md:pl-[240px]">
+<div class="flex justify-between items-center px-lg py-md max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-sm hover:bg-primary/5 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">SplitFlow</h1>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:bg-primary/5 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-md md:pl-[264px] md:pr-lg md:pt-24 md:pb-8 max-w-container-max mx-auto min-h-screen relative">
+<div class="noise-overlay absolute inset-0 z-0"></div>
+<div class="relative z-10">
+<!-- Hero Summary Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<!-- Total Balance -->
+<div class="glass-card p-lg rounded-xl shadow-sm flex flex-col gap-xs overflow-hidden relative group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full group-hover:scale-125 transition-transform duration-700"></div>
+<span class="font-label-md text-on-surface-variant">Net Balance</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">$1,240.50</span>
+<div class="flex items-center gap-xs text-[12px] font-bold text-secondary mt-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>12% from last month</span>
+</div>
+</div>
+<!-- You Are Owed -->
+<div class="glass-card p-lg rounded-xl shadow-sm flex flex-col gap-xs border-l-4 border-l-secondary">
+<span class="font-label-md text-on-surface-variant">Total Owed to You</span>
+<span class="font-headline-lg text-headline-lg text-secondary">$2,850.20</span>
+<span class="text-[12px] text-on-surface-variant mt-sm">From 8 people across 3 groups</span>
+</div>
+<!-- You Owe -->
+<div class="glass-card p-lg rounded-xl shadow-sm flex flex-col gap-xs border-l-4 border-l-tertiary">
+<span class="font-label-md text-on-surface-variant">Total You Owe</span>
+<span class="font-headline-lg text-headline-lg text-tertiary">$1,609.70</span>
+<span class="text-[12px] text-on-surface-variant mt-sm">Due within 14 days</span>
+</div>
+</section>
+<!-- Interactive Insights (Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-md mb-lg">
+<!-- Spending Trend Mini-Chart -->
+<div class="md:col-span-8 glass-card p-lg rounded-xl shadow-sm">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-on-surface">Monthly Spending Trend</h3>
+<div class="flex gap-sm">
+<span class="px-sm py-1 rounded bg-primary-container/10 text-primary text-[11px] font-bold">Monthly</span>
+<span class="px-sm py-1 rounded text-on-surface-variant text-[11px] font-bold">Weekly</span>
+</div>
+</div>
+<div class="h-48 w-full bg-surface-container/30 rounded-lg relative flex items-end justify-between px-md pb-md overflow-hidden">
+<!-- Simulated Chart Bars -->
+<div class="w-8 bg-primary/20 rounded-t-sm h-[30%] hover:bg-primary transition-colors cursor-pointer group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">$420</div>
+</div>
+<div class="w-8 bg-primary/20 rounded-t-sm h-[45%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="w-8 bg-primary/20 rounded-t-sm h-[60%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="w-8 bg-primary/20 rounded-t-sm h-[35%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="w-8 bg-primary/40 rounded-t-sm h-[75%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="w-8 bg-primary/20 rounded-t-sm h-[50%] hover:bg-primary transition-colors cursor-pointer group relative"></div>
+<div class="w-8 bg-primary rounded-t-sm h-[90%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-2 py-1 rounded text-[10px]">$1,240</div>
+</div>
+</div>
+</div>
+<!-- Category Breakdown -->
+<div class="md:col-span-4 glass-card p-lg rounded-xl shadow-sm flex flex-col items-center">
+<h3 class="w-full font-headline-md text-on-surface mb-md">Category Split</h3>
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#e4e1ee" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#3525cd" stroke-dasharray="45 55" stroke-dashoffset="0" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#006c49" stroke-dasharray="25 75" stroke-dashoffset="-45" stroke-width="3"></circle>
+<circle cx="18" cy="18" fill="transparent" r="15.915" stroke="#95002b" stroke-dasharray="30 70" stroke-dashoffset="-70" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-label-sm text-on-surface-variant">Top</span>
+<span class="font-bold text-primary">Rent</span>
+</div>
+</div>
+<div class="w-full mt-md flex flex-col gap-sm">
+<div class="flex items-center justify-between text-label-sm">
+<div class="flex items-center gap-sm"><div class="w-2 h-2 rounded-full bg-primary"></div><span>Rent</span></div>
+<span class="font-bold">45%</span>
+</div>
+<div class="flex items-center justify-between text-label-sm">
+<div class="flex items-center gap-sm"><div class="w-2 h-2 rounded-full bg-secondary"></div><span>Utilities</span></div>
+<span class="font-bold">25%</span>
+</div>
+<div class="flex items-center justify-between text-label-sm">
+<div class="flex items-center gap-sm"><div class="w-2 h-2 rounded-full bg-tertiary"></div><span>Food</span></div>
+<span class="font-bold">30%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Transactions List -->
+<section class="glass-card rounded-xl shadow-sm overflow-hidden mb-8">
+<div class="p-lg border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="font-headline-md text-on-surface">Recent Transactions</h3>
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline">
+                        View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-[12px] uppercase tracking-wider">
+<th class="px-lg py-md">Description</th>
+<th class="px-lg py-md">Group</th>
+<th class="px-lg py-md">Amount</th>
+<th class="px-lg py-md">Your Share</th>
+<th class="px-lg py-md">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Weekly Team Dinner</span>
+<span class="text-[12px] text-on-surface-variant">Yesterday, 8:45 PM</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="text-label-md px-sm py-1 bg-surface-container rounded-full text-on-surface-variant">Flatmates</span>
+</td>
+<td class="px-lg py-md font-bold text-on-surface">$124.50</td>
+<td class="px-lg py-md font-bold text-tertiary">-$31.12</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-bold">Unpaid</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">electric_bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Electricity Bill Q3</span>
+<span class="text-[12px] text-on-surface-variant">Oct 12, 2023</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="text-label-md px-sm py-1 bg-surface-container rounded-full text-on-surface-variant">Main Office</span>
+</td>
+<td class="px-lg py-md font-bold text-on-surface">$450.00</td>
+<td class="px-lg py-md font-bold text-secondary">+$112.50</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold">Settled</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Whole Foods Run</span>
+<span class="text-[12px] text-on-surface-variant">Oct 10, 2023</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="text-label-md px-sm py-1 bg-surface-container rounded-full text-on-surface-variant">Vacation Squad</span>
+</td>
+<td class="px-lg py-md font-bold text-on-surface">$89.10</td>
+<td class="px-lg py-md font-bold text-tertiary">-$44.55</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-[11px] font-bold">Pending</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-md md:bottom-lg md:right-lg z-50 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-lg border-t border-outline-variant/10 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center px-md pb-safe pt-sm z-50">
+<a class="flex flex-col items-center justify-center text-primary font-bold transition-transform scale-90" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-[10px] mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform scale-90" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-[10px] mt-1">Groups</span>
+</a>
+<div class="w-12 h-12 bg-primary rounded-full -mt-8 flex items-center justify-center text-on-primary shadow-lg ring-4 ring-background">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform scale-90" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-sm text-[10px] mt-1">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-transform scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and interactive logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hover effect for transaction table rows
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', () => {
+                    row.querySelector('.material-symbols-outlined').style.transform = 'scale(1.1) rotate(-5deg)';
+                    row.querySelector('.material-symbols-outlined').style.transition = 'transform 0.2s ease-out';
+                });
+                row.addEventListener('mouseleave', () => {
+                    row.querySelector('.material-symbols-outlined').style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+
+            // Summary card shimmer effect simulation
+            const glassCards = document.querySelectorAll('.glass-card');
+            glassCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        });
+    </script>
+</body></html>

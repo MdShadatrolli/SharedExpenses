@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | SplitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e4e1ee",
+                      "on-primary-container": "#dad7ff",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "surface-variant": "#e4e1ee",
+                      "inverse-on-surface": "#f3effc",
+                      "secondary-container": "#6cf8bb",
+                      "inverse-surface": "#302f39",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffdadb",
+                      "primary-fixed": "#e2dfff",
+                      "outline-variant": "#c7c4d8",
+                      "surface-tint": "#4d44e3",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "tertiary-container": "#bf0f3c",
+                      "surface-bright": "#fcf8ff",
+                      "surface-container-low": "#f5f2ff",
+                      "on-secondary-container": "#00714d",
+                      "on-error-container": "#93000a",
+                      "secondary": "#006c49",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#95002b",
+                      "background": "#fcf8ff",
+                      "on-surface-variant": "#464555",
+                      "on-background": "#1b1b24",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-primary-fixed": "#0f0069",
+                      "on-secondary-fixed": "#002113",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#005236",
+                      "on-tertiary-fixed": "#40000d",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#4edea3",
+                      "on-surface": "#1b1b24",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "surface-container-high": "#eae6f4",
+                      "surface-dim": "#dcd8e5",
+                      "inverse-primary": "#c3c0ff",
+                      "primary-container": "#4f46e5",
+                      "on-error": "#ffffff",
+                      "surface-container": "#f0ecf9",
+                      "secondary-fixed": "#6ffbbe",
+                      "primary": "#3525cd",
+                      "outline": "#777587",
+                      "on-tertiary-container": "#ffd0d2",
+                      "error": "#ba1a1a",
+                      "surface": "#fcf8ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "xl": "40px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "container-max": "1280px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Geist"],
+                      "body-lg": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "label-md": ["Geist"],
+                      "body-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "headline-lg-mobile": ["Geist"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .glass-panel {
+            background: rgba(252, 248, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .micro-interaction:active { transform: scale(0.98); }
+        .focus-ring:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(53, 37, 205, 0.2);
+        }
+        .mesh-gradient {
+            background-color: #fcf8ff;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(248,68%,60%,0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(158,82%,50%,0.1) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden">
+<main class="flex h-screen w-full">
+<!-- Left Side: Visual Branding (High Fidelity Illustration) -->
+<section class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-primary-container items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="A high-fidelity 3D digital illustration representing fluid financial connectivity and seamless settlements. Glowing translucent crystalline shapes float in a deep indigo space, interconnected by thin, luminous threads of light in shades of mint green and lavender. The lighting is ethereal and professional, creating a sense of sophisticated fintech infrastructure and secure digital data flow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrJTZFimAHLkqBS_0xE5Y_0fFgW4ZrNiReJGiDDEiTtDDoFIFVsq5l8F3jBIsbrqxroJPe0RHk8y_9NatXIJJo7LXhnXX4ebL573pqBYBj8NxVbfmSjAAkIKp0MddDGy-EAOwzq_mXs7_-xLbwVfO9Qni1yUafrparyxQmwa5IdRfhfg5E-nlyxIbH4rfzDgS5kEQ_9_1MpJq4tuxOCdAHMHiRRq9unvz9mPGIw7zcaGkmx7y2dI9wYCjBE-dWKhMf06TX_VC0dmjg"/>
+</div>
+<div class="relative z-10 p-xl max-w-lg text-white">
+<div class="mb-lg">
+<span class="inline-flex items-center px-md py-xs rounded-full bg-secondary-container/20 text-secondary-fixed font-label-md text-label-md backdrop-blur-md border border-secondary-container/30">
+<span class="material-symbols-outlined mr-xs text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        Trusted by 10k+ Teams
+                    </span>
+</div>
+<h1 class="font-display-lg text-display-lg mb-md leading-tight">
+                    Effortless settlements for modern finance.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-primary-container/80">
+                    SplitFlow simplifies complex expense sharing with real-time tracking and automated reconciliation. Join the future of collaborative payments.
+                </p>
+<!-- Floating Glass Card (Social Proof/Micro-UI) -->
+<div class="mt-xl glass-panel p-lg rounded-xl shadow-2xl">
+<div class="flex items-center gap-md mb-md">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Settlement Success</p>
+<p class="font-headline-md text-headline-md text-on-surface">+$2,450.00</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[85%]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Login Form -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-lg mesh-gradient">
+<div class="w-full max-w-[420px] animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Branding -->
+<div class="mb-xl text-center lg:text-left">
+<div class="flex items-center gap-xs mb-sm justify-center lg:justify-start">
+<div class="bg-primary p-xs rounded-lg shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-[28px]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<span class="font-display-lg text-[32px] font-bold text-primary tracking-tighter">SplitFlow</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Welcome Back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Please enter your credentials to access your account.</p>
+</div>
+<!-- Form -->
+<form class="space-y-lg" onsubmit="event.preventDefault();">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-xs" for="email">Email address</label>
+<div class="relative group">
+<input class="w-full h-[52px] px-lg rounded-xl border-outline/30 bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-body-md placeholder:text-outline-variant" id="email" placeholder="name@company.com" type="email"/>
+<span class="material-symbols-outlined absolute right-lg top-1/2 -translate-y-1/2 text-outline-variant group-focus-within:text-primary transition-colors">alternate_email</span>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center px-xs">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline transition-all" href="#">Forgot password?</a>
+</div>
+<div class="relative group">
+<input class="w-full h-[52px] px-lg rounded-xl border-outline/30 bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all font-body-md placeholder:text-outline-variant" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-lg top-1/2 -translate-y-1/2 text-outline-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center px-xs">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 text-primary bg-surface border-outline/30 rounded focus:ring-primary focus:ring-offset-0" id="remember" type="checkbox"/>
+</div>
+<label class="ml-sm font-label-md text-label-md text-on-surface-variant cursor-pointer" for="remember">Remember for 30 days</label>
+</div>
+<button class="w-full h-[56px] bg-primary text-white rounded-xl font-headline-md text-label-md shadow-lg shadow-primary/20 hover:bg-primary-container active:scale-[0.99] transition-all flex items-center justify-center gap-sm">
+                        Sign in to SplitFlow
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+<div class="relative my-xl">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline/10"></div></div>
+<div class="relative flex justify-center text-label-sm"><span class="bg-background px-md text-outline">OR</span></div>
+</div>
+<button class="w-full h-[52px] bg-surface border border-outline/20 text-on-surface rounded-xl font-label-md text-label-md flex items-center justify-center gap-md hover:bg-surface-container-low active:scale-[0.99] transition-all">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                    Sign in with Google
+                </button>
+<p class="mt-xl text-center font-body-md text-body-md text-on-surface-variant">
+                    Don't have an account? 
+                    <a class="text-primary font-bold hover:underline" href="#">Create account</a>
+</p>
+<!-- Footer Terms -->
+<div class="mt-xl text-center">
+<p class="font-label-sm text-label-sm text-outline px-lg">
+                        By signing in, you agree to our 
+                        <a class="underline" href="#">Terms of Service</a> and 
+                        <a class="underline" href="#">Privacy Policy</a>.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Subtle Mouse parallax for the right side mesh
+        document.addEventListener('mousemove', (e) => {
+            const mesh = document.querySelector('.mesh-gradient');
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            mesh.style.backgroundPosition = `${moveX}px ${moveY}px`;
+        });
+
+        // Focus ring enhancement script
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('ring-2', 'ring-primary/20');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('ring-2', 'ring-primary/20');
+            });
+        });
+    </script>
+</body></html>

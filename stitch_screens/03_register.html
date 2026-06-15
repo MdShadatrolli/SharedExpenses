@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register | SplitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#00714d",
+                    "secondary-container": "#6cf8bb",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#0f0069",
+                    "on-surface-variant": "#464555",
+                    "secondary-fixed-dim": "#4edea3",
+                    "surface-container-highest": "#e4e1ee",
+                    "surface-container-high": "#eae6f4",
+                    "on-secondary-fixed": "#002113",
+                    "primary": "#3525cd",
+                    "surface-container-low": "#f5f2ff",
+                    "on-background": "#1b1b24",
+                    "on-tertiary-fixed": "#40000d",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#92002a",
+                    "on-surface": "#1b1b24",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdadb",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fcf8ff",
+                    "outline": "#777587",
+                    "tertiary-container": "#bf0f3c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-tertiary-container": "#ffd0d2",
+                    "inverse-surface": "#302f39",
+                    "secondary": "#006c49",
+                    "on-error": "#ffffff",
+                    "tertiary": "#95002b",
+                    "on-secondary-fixed-variant": "#005236",
+                    "surface": "#fcf8ff",
+                    "inverse-on-surface": "#f3effc",
+                    "outline-variant": "#c7c4d8",
+                    "tertiary-fixed-dim": "#ffb2b7",
+                    "primary-fixed": "#e2dfff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "surface-container": "#f0ecf9",
+                    "error": "#ba1a1a",
+                    "background": "#fcf8ff",
+                    "surface-dim": "#dcd8e5",
+                    "surface-variant": "#e4e1ee",
+                    "primary-container": "#4f46e5",
+                    "on-primary-container": "#dad7ff",
+                    "surface-tint": "#4d44e3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "xl": "40px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "body-md": ["Geist"],
+                    "body-lg": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #fcf8ff;
+            overflow-x: hidden;
+        }
+        .glass-surface {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: 0.02;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .input-focus-glow:focus {
+            box-shadow: 0 0 0 2px rgba(53, 37, 205, 0.2);
+            outline: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex items-center justify-center p-md md:p-lg relative">
+<div class="noise-overlay"></div>
+<!-- Atmospheric Background Element -->
+<div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary-fixed opacity-20 blur-[120px] rounded-full z-0"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-secondary-fixed opacity-15 blur-[100px] rounded-full z-0"></div>
+<div class="w-full max-w-md relative z-10 animate-fade-in-up">
+<!-- Logo & Header -->
+<div class="text-center mb-xl">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-primary-container text-on-primary-container shadow-xl mb-md">
+<span class="material-symbols-outlined text-[32px]">account_balance_wallet</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-background mb-xs">SplitFlow</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Simplified expenses for modern teams</p>
+</div>
+<!-- Registration Card -->
+<div class="glass-surface p-lg rounded-xl shadow-xl border border-outline-variant/10">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-lg">Create Account</h2>
+<form class="space-y-md" id="registration-form">
+<!-- Full Name Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="full_name">Full Name</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full pl-xl pr-md py-md bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-body-md text-on-surface input-focus-glow transition-all placeholder:text-outline-variant" id="full_name" name="full_name" placeholder="Alex Morgan" required="" type="text"/>
+</div>
+</div>
+<!-- Email Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="email">Email Address</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full pl-xl pr-md py-md bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-body-md text-on-surface input-focus-glow transition-all placeholder:text-outline-variant" id="email" name="email" placeholder="alex@example.com" required="" type="email"/>
+</div>
+<!-- Error State Example (Hidden by default) -->
+<p class="hidden font-label-sm text-label-sm text-error mt-xs flex items-center gap-xs" id="email-error">
+<span class="material-symbols-outlined text-[14px]">error</span> Please enter a valid email address
+                    </p>
+</div>
+<!-- Password Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="password">Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full pl-xl pr-md py-md bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-body-md text-on-surface input-focus-glow transition-all placeholder:text-outline-variant" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Confirm Password Field -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="confirm_password">Confirm Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">lock_reset</span>
+<input class="w-full pl-xl pr-md py-md bg-surface-container-lowest border border-outline-variant/30 rounded-lg font-body-md text-body-md text-on-surface input-focus-glow transition-all placeholder:text-outline-variant" id="confirm_password" name="confirm_password" placeholder="••••••••" required="" type="password"/>
+</div>
+<!-- Success State Example (Hidden by default) -->
+<p class="hidden font-label-sm text-label-sm text-on-secondary-container mt-xs flex items-center gap-xs" id="password-match">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span> Passwords match perfectly
+                    </p>
+</div>
+<!-- Action Button -->
+<button class="w-full mt-lg py-md px-lg bg-primary hover:bg-primary/90 text-on-primary font-label-md text-label-md rounded-lg shadow-lg hover:shadow-primary/20 transform transition-all active:scale-[0.98] flex items-center justify-center gap-sm" id="submit-btn" type="submit">
+                    Create Account
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<div class="mt-lg pt-lg border-t border-outline-variant/10 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Already have an account? 
+                    <a class="text-primary font-semibold hover:underline decoration-2 underline-offset-4" href="#">Login here</a>
+</p>
+</div>
+</div>
+<!-- Terms -->
+<p class="mt-lg text-center font-label-sm text-label-sm text-on-surface-variant/60 px-md">
+            By creating an account, you agree to our 
+            <a class="underline" href="#">Terms of Service</a> and 
+            <a class="underline" href="#">Privacy Policy</a>.
+        </p>
+</div>
+<!-- Background Decoration Component -->
+<div class="fixed bottom-lg right-lg hidden lg:block opacity-40">
+<div class="glass-surface p-md rounded-xl flex items-center gap-md border border-white/40">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">verified_user</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface leading-tight">Bank-grade security</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">256-bit encryption active</p>
+</div>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('registration-form');
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const passwordInput = document.getElementById('password');
+            const confirmInput = document.getElementById('confirm_password');
+            const passwordMatch = document.getElementById('password-match');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Email validation logic
+            emailInput.addEventListener('blur', () => {
+                if (emailInput.value && !emailInput.value.includes('@')) {
+                    emailError.classList.remove('hidden');
+                    emailInput.classList.add('border-error', 'text-error');
+                    emailInput.classList.remove('border-outline-variant/30');
+                } else {
+                    emailError.classList.add('hidden');
+                    emailInput.classList.remove('border-error', 'text-error');
+                    emailInput.classList.add('border-outline-variant/30');
+                }
+            });
+
+            // Password matching logic
+            const checkPasswords = () => {
+                if (confirmInput.value.length > 0) {
+                    if (passwordInput.value === confirmInput.value) {
+                        passwordMatch.classList.remove('hidden');
+                        confirmInput.classList.add('border-on-secondary-container');
+                        confirmInput.classList.remove('border-outline-variant/30');
+                    } else {
+                        passwordMatch.classList.add('hidden');
+                        confirmInput.classList.remove('border-on-secondary-container');
+                        confirmInput.classList.add('border-outline-variant/30');
+                    }
+                }
+            };
+
+            passwordInput.addEventListener('input', checkPasswords);
+            confirmInput.addEventListener('input', checkPasswords);
+
+            // Submission interaction
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Creating Account...
+                `;
+                
+                // Simulate redirect
+                setTimeout(() => {
+                    alert('Registration Successful! Redirecting to dashboard...');
+                    window.location.href = '#dashboard';
+                }, 1500);
+            });
+        });
+    </script>
+<style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</body></html>

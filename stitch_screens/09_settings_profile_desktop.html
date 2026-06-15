@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SplitFlow | Profile &amp; Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e4e1ee",
+                      "on-primary-container": "#dad7ff",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "surface-variant": "#e4e1ee",
+                      "inverse-on-surface": "#f3effc",
+                      "secondary-container": "#6cf8bb",
+                      "inverse-surface": "#302f39",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffdadb",
+                      "primary-fixed": "#e2dfff",
+                      "outline-variant": "#c7c4d8",
+                      "surface-tint": "#4d44e3",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "tertiary-container": "#bf0f3c",
+                      "surface-bright": "#fcf8ff",
+                      "surface-container-low": "#f5f2ff",
+                      "on-secondary-container": "#00714d",
+                      "on-error-container": "#93000a",
+                      "secondary": "#006c49",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#95002b",
+                      "background": "#fcf8ff",
+                      "on-surface-variant": "#464555",
+                      "on-background": "#1b1b24",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-primary-fixed": "#0f0069",
+                      "on-secondary-fixed": "#002113",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#005236",
+                      "on-tertiary-fixed": "#40000d",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#4edea3",
+                      "on-surface": "#1b1b24",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "surface-container-high": "#eae6f4",
+                      "surface-dim": "#dcd8e5",
+                      "inverse-primary": "#c3c0ff",
+                      "primary-container": "#4f46e5",
+                      "on-error": "#ffffff",
+                      "surface-container": "#f0ecf9",
+                      "secondary-fixed": "#6ffbbe",
+                      "primary": "#3525cd",
+                      "outline": "#777587",
+                      "on-tertiary-container": "#ffd0d2",
+                      "error": "#ba1a1a",
+                      "surface": "#fcf8ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "xl": "40px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "container-max": "1280px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Geist"],
+                      "body-lg": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "label-md": ["Geist"],
+                      "body-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "headline-lg-mobile": ["Geist"]
+              },
+              "fontSize": {
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .glass-card {
+            background: rgba(252, 248, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(119, 117, 135, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e4e1ee; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[240px] z-50 bg-surface-container flex flex-col h-full p-md gap-sm shadow-md">
+<div class="flex flex-col gap-xs mb-lg px-xs">
+<h1 class="font-headline-md text-headline-md font-black text-primary">SplitFlow</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Fintech Solutions</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">group</span> Groups
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">receipt_long</span> Expenses
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">handshake</span> Settlements
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">upload_file</span> CSV Import
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">assessment</span> Reports
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-primary font-bold bg-primary/10 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span> Profile
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<button class="mt-md w-full bg-primary text-on-primary py-sm rounded-lg font-label-md flex items-center justify-center gap-sm active:scale-95 duration-150 shadow-sm">
+<span class="material-symbols-outlined">add</span> Add Expense
+        </button>
+<div class="mt-xl border-t border-outline-variant pt-md space-y-1">
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">help</span> Help
+            </a>
+<a class="flex items-center gap-md px-md py-sm font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[240px] flex-1 h-screen overflow-y-auto custom-scrollbar bg-background">
+<!-- Header -->
+<header class="w-full sticky top-0 z-40 bg-surface/70 backdrop-blur-md px-lg py-sm flex items-center justify-between shadow-sm">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Profile &amp; Settings</h2>
+<div class="flex items-center gap-md">
+<button class="p-xs text-on-surface-variant hover:bg-primary/5 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="User profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA96FdG-gd-Kg_PCYCkErLjj_MiMyZgy6Uj3E2QeB7Kc_FahaGh0ItU2Qf0CgYCyJdo1_UPam9wgRhI9pBa5bdtDzzKx-o1sW3nGl2EA9nPnjoq3SjkgK9qyhHcJU42IQRB9KOMHTDnkWTbnw08KRZrg-pqGNwVOD1Reic9Tbi3k1ftV5FAfRx63b6HBwjy-CxmkCwW27OZtSCGKKzuvf8wez-ws4W8o9ISI8KBbdUv8SJ_FL7uBz98vyRSSxocJurXU5pWXolD9eaF"/>
+</div>
+</div>
+</header>
+<!-- Content Grid -->
+<div class="max-w-[1280px] mx-auto p-lg grid grid-cols-12 gap-lg">
+<!-- Profile Banner & Main Info (Full Width Column) -->
+<section class="col-span-12 glass-card rounded-xl overflow-hidden shadow-sm">
+<div class="h-48 w-full relative">
+<img alt="Profile Banner" class="w-full h-full object-cover" data-alt="A sophisticated abstract gradient background with soft waves of deep indigo, violet, and electric blue. The aesthetic is modern and tech-focused, reflecting a high-end fintech brand identity. The lighting is diffused and professional, creating a sense of digital depth and atmospheric elegance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuVcreVJFhq-NkMO5M8QUdUoqkm2qDUzA1UF9wAC49nNJ-MFXCmlpxbYYawBC4b3Bn8nKq7DEuMf-aWBu4QQ3qDbV52QvuPoMMiwlGI8PouTMo7JhCJbv_bEwbXK2yAmQa_cwLXOfnCICIofQ-MTrE9p6tFA4MkTA-qpqUBl-jGD2sYYVZ42eecLHDJ9i3fIDSxRHBSnyu4EmSfyUyMl3ImkfZJFkFRAWHOOp-TwnVBFc8Ke0s1BzjImtHnJRlfggZ6PYPaWnQqCOp"/>
+<div class="absolute -bottom-12 left-lg flex items-end gap-md">
+<div class="h-32 w-32 rounded-2xl border-4 border-surface bg-surface-container-lowest overflow-hidden shadow-md">
+<img alt="Felix Avatar" class="w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB3f4IG05VGo9rntcHr9iOoaIvqARGvH-EB_GCrh9SZrcRLVFhoZtV88CesgySIL8m0H2cSpOJE-pqnBL0ary1Edtpd6w3ViObcAH_5tJmgTgLx0k2e_HDlMpL0XK_7oQVF4yCjPjPK0uwzsFJeu8EaOZ4Mv3K9GTou3jHI0AZ7P7JdcP1WQHE_H29b8HccIFHAnFnX2KrGJvw3HYkCASlf3xgELGQ6LwPj1C9rmwNuS9wB1izSO6O_e5mWLrfiOLlrxRKU6nzvoCT"/>
+</div>
+<div class="mb-2 pb-2">
+<div class="flex items-center gap-sm">
+<h3 class="font-display-lg text-headline-lg text-on-surface">Felix Henderson</h3>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-1 rounded-full text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span> Verified Member
+                                </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">felix.henderson@splitflow.io</p>
+</div>
+</div>
+</div>
+<div class="pt-16 pb-lg px-lg flex items-center justify-end gap-xl border-t border-outline-variant/30 mt-4">
+<div class="text-center">
+<p class="font-headline-md text-primary font-bold">12</p>
+<p class="font-label-sm text-on-surface-variant">Groups</p>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-primary font-bold">148</p>
+<p class="font-label-sm text-on-surface-variant">Expenses</p>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-secondary font-bold">94%</p>
+<p class="font-label-sm text-on-surface-variant">Settled</p>
+</div>
+</div>
+</section>
+<!-- Settings Left Column -->
+<div class="col-span-12 lg:col-span-8 space-y-lg">
+<!-- Preferences Section -->
+<section class="glass-card rounded-xl p-lg shadow-sm">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h4 class="font-headline-md text-headline-md">Preferences</h4>
+</div>
+<div class="space-y-lg">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-md font-bold text-on-surface">Dark Appearance</p>
+<p class="font-label-md text-on-surface-variant">Switch between light and dark visual themes.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="dark-toggle" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-md font-bold text-on-surface">Primary Currency</p>
+<p class="font-label-md text-on-surface-variant">Select your default currency for new expenses.</p>
+</div>
+<select class="bg-surface-container-low border border-outline-variant text-on-surface text-label-md rounded-lg focus:ring-primary focus:border-primary block w-40 p-sm outline-none">
+<option selected="">USD ($)</option>
+<option>EUR (€)</option>
+<option>GBP (£)</option>
+<option>JPY (¥)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Notifications Section -->
+<section class="glass-card rounded-xl p-lg shadow-sm">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<h4 class="font-headline-md text-headline-md">Notifications</h4>
+</div>
+<div class="space-y-lg">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-md font-bold text-on-surface">Email Digests</p>
+<p class="font-label-md text-on-surface-variant">Receive weekly summaries of your spending and settlements.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-md font-bold text-on-surface">Push Notifications</p>
+<p class="font-label-md text-on-surface-variant">Alerts for mentions, direct payments, and system updates.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-body-md font-bold text-on-surface">Group Invitations</p>
+<p class="font-label-md text-on-surface-variant">Notify me when someone adds me to a new group.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- Settings Right Column -->
+<div class="col-span-12 lg:col-span-4 space-y-lg">
+<!-- Activity Log Summary -->
+<section class="glass-card rounded-xl p-lg shadow-sm h-full">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary">history</span>
+<h4 class="font-headline-md text-headline-md">Activity Log</h4>
+</div>
+<div class="space-y-md">
+<div class="flex gap-md">
+<div class="h-10 w-10 shrink-0 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[20px]">payments</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Settled $45.00 with <strong>Sarah J.</strong></p>
+<p class="font-label-sm text-on-surface-variant">2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="h-10 w-10 shrink-0 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">group_add</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Joined <strong>Ski Trip 2024</strong> group</p>
+<p class="font-label-sm text-on-surface-variant">Yesterday</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="h-10 w-10 shrink-0 rounded-full bg-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[20px]">receipt</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">New expense: <strong>Dinner at Lupo</strong></p>
+<p class="font-label-sm text-on-surface-variant">Jan 12, 2024</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="h-10 w-10 shrink-0 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">shield</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface">Security: Password changed</p>
+<p class="font-label-sm text-on-surface-variant">Jan 10, 2024</p>
+</div>
+</div>
+</div>
+<button class="mt-lg w-full py-sm border border-outline-variant rounded-lg font-label-md text-on-surface-variant hover:bg-primary/5 transition-colors">
+                        View Full History
+                    </button>
+</section>
+</div>
+<!-- Footer Buttons -->
+<div class="col-span-12 flex items-center justify-end gap-md pt-lg border-t border-outline-variant/30 mt-lg mb-xl">
+<button class="px-xl py-md font-label-md text-on-surface-variant hover:bg-surface-container-highest rounded-xl transition-all active:scale-95">
+                    Cancel Changes
+                </button>
+<button class="px-xl py-md font-label-md bg-primary text-on-primary rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all active:scale-95 flex items-center gap-sm">
+                    Save Changes
+                </button>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for theme toggle
+        const toggle = document.getElementById('dark-toggle');
+        toggle.addEventListener('change', () => {
+            document.documentElement.classList.toggle('dark');
+            // Mock feedback
+            console.log('Theme shifted to:', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Ripples or other micro-interactions could be added here
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.classList.add('absolute', 'w-0', 'h-0', 'bg-white/20', 'rounded-full', 'transform', '-translate-x-1/2', '-translate-y-1/2', 'transition-all', 'duration-500', 'pointer-events-none');
+                
+                btn.style.position = 'relative';
+                btn.style.overflow = 'hidden';
+                btn.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.width = `${Math.max(rect.width, rect.height) * 2}px`;
+                    ripple.style.height = `${Math.max(rect.width, rect.height) * 2}px`;
+                }, 0);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body></html>

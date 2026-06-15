@@ -1,0 +1,143 @@
+{
+  "designSystems": [
+    {
+      "designSystem": {
+        "displayName": "Luminous Ledger",
+        "styleGuidelines": "## Brand & Style\nThe design system is engineered for a high-trust, collaborative fintech environment. It balances the precision of enterprise SaaS with the approachability of consumer lifestyle apps. The aesthetic centers on **Refined Modernism**, utilizing a blend of deep indigo accents and glassmorphic surfaces to create a sense of digital \"air\" and depth.\n\nThe UI should feel lightweight and responsive, evoking feelings of clarity and financial control. Key stylistic pillars include:\n- **Glassmorphism:** Strategic use of backdrop filters to maintain context and layering.\n- **Micro-interactions:** Smooth, spring-based transitions for data updates and view shifts.\n- **Precision:** High attention to alignment and information density, reminiscent of industry-leading developer tools.\n\n## Layout & Spacing\nThe layout follows a **Fluid Grid** model with a maximum container width of 1280px for dashboard views.\n- **Rhythm:** An 8px base grid governs all padding and margins.\n- **Desktop:** 12-column grid with 24px gutters. Use sidebar navigation (240px fixed) to maximize horizontal space for data tables.\n- **Mobile:** Single column with 16px side margins. Bottom-sheet navigation is preferred for primary actions (like \"Add Expense\").\n- **Spacing Logic:** Use `md` (16px) for internal card padding and `lg` (24px) for spacing between major sections.\n\n## Elevation & Depth\nThis design system avoids heavy, dark shadows in favor of **Tonal Elevation** and **Backdrop Blurs**.\n- **Level 0 (Background):** Flat, solid color.\n- **Level 1 (Cards/Tables):** Glassmorphic surface (70% opacity) with a 1px stroke (10% opacity white) and a subtle 4px blur shadow.\n- **Level 2 (Modals/Popovers):** Higher opacity (90%), 20px backdrop blur, and a diffused 12px shadow (`0 10px 15px -3px rgba(0,0,0,0.1)`).\n- **Glass Effect:** Use a subtle noise texture overlay (2% opacity) on glass surfaces to prevent color banding in dark mode.\n\n## Components\n- **Buttons:** Primary buttons feature a subtle top-to-bottom gradient (Primary to a slightly darker shade) with a 1px inner border.\n- **Cards:** Use \"soft borders\"—a 1px solid border at 5% opacity that is slightly darker/lighter than the background to define the glass edge.\n- **Data Tables:** Row hover states should use a 5% primary color tint. Transaction amounts should be right-aligned.\n- **Expense Chips:** Small, pill-shaped indicators for categories (e.g., \"Food\", \"Rent\") with low-saturation background tints of the primary color.\n- **Progress Bars:** Thin (4px) rounded tracks for \"budget used\" metrics, using secondary/accent colors for status.\n- **Inputs:** Focus states should utilize a 2px outer glow of the primary color with 20% opacity.",
+        "theme": {
+          "bodyFont": "GEIST",
+          "bodyFontFamily": "Geist",
+          "colorMode": "LIGHT",
+          "colorVariant": "FIDELITY",
+          "customColor": "#4f46e5",
+          "designMd": "---\nname: Luminous Ledger\ncolors:\n  surface: '#fcf8ff'\n  surface-dim: '#dcd8e5'\n  surface-bright: '#fcf8ff'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f5f2ff'\n  surface-container: '#f0ecf9'\n  surface-container-high: '#eae6f4'\n  surface-container-highest: '#e4e1ee'\n  on-surface: '#1b1b24'\n  on-surface-variant: '#464555'\n  inverse-surface: '#302f39'\n  inverse-on-surface: '#f3effc'\n  outline: '#777587'\n  outline-variant: '#c7c4d8'\n  surface-tint: '#4d44e3'\n  primary: '#3525cd'\n  on-primary: '#ffffff'\n  primary-container: '#4f46e5'\n  on-primary-container: '#dad7ff'\n  inverse-primary: '#c3c0ff'\n  secondary: '#006c49'\n  on-secondary: '#ffffff'\n  secondary-container: '#6cf8bb'\n  on-secondary-container: '#00714d'\n  tertiary: '#95002b'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#bf0f3c'\n  on-tertiary-container: '#ffd0d2'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#e2dfff'\n  primary-fixed-dim: '#c3c0ff'\n  on-primary-fixed: '#0f0069'\n  on-primary-fixed-variant: '#3323cc'\n  secondary-fixed: '#6ffbbe'\n  secondary-fixed-dim: '#4edea3'\n  on-secondary-fixed: '#002113'\n  on-secondary-fixed-variant: '#005236'\n  tertiary-fixed: '#ffdadb'\n  tertiary-fixed-dim: '#ffb2b7'\n  on-tertiary-fixed: '#40000d'\n  on-tertiary-fixed-variant: '#92002a'\n  background: '#fcf8ff'\n  on-background: '#1b1b24'\n  surface-variant: '#e4e1ee'\ntypography:\n  display-lg:\n    fontFamily: Geist\n    fontSize: 48px\n    fontWeight: '600'\n    lineHeight: 56px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Geist\n    fontSize: 32px\n    fontWeight: '600'\n    lineHeight: 40px\n    letterSpacing: -0.02em\n  headline-lg-mobile:\n    fontFamily: Geist\n    fontSize: 24px\n    fontWeight: '600'\n    lineHeight: 32px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Geist\n    fontSize: 24px\n    fontWeight: '500'\n    lineHeight: 32px\n  body-lg:\n    fontFamily: Geist\n    fontSize: 18px\n    fontWeight: '400'\n    lineHeight: 28px\n  body-md:\n    fontFamily: Geist\n    fontSize: 16px\n    fontWeight: '400'\n    lineHeight: 24px\n  label-md:\n    fontFamily: Geist\n    fontSize: 14px\n    fontWeight: '500'\n    lineHeight: 20px\n    letterSpacing: 0.01em\n  label-sm:\n    fontFamily: Geist\n    fontSize: 12px\n    fontWeight: '600'\n    lineHeight: 16px\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  base: 4px\n  xs: 4px\n  sm: 8px\n  md: 16px\n  lg: 24px\n  xl: 40px\n  container-max: 1280px\n  gutter: 24px\n---\n\n## Brand & Style\nThe design system is engineered for a high-trust, collaborative fintech environment. It balances the precision of enterprise SaaS with the approachability of consumer lifestyle apps. The aesthetic centers on **Refined Modernism**, utilizing a blend of deep indigo accents and glassmorphic surfaces to create a sense of digital \"air\" and depth.\n\nThe UI should feel lightweight and responsive, evoking feelings of clarity and financial control. Key stylistic pillars include:\n- **Glassmorphism:** Strategic use of backdrop filters to maintain context and layering.\n- **Micro-interactions:** Smooth, spring-based transitions for data updates and view shifts.\n- **Precision:** High attention to alignment and information density, reminiscent of industry-leading developer tools.\n\n## Colors\nThe palette is functional and semantic, prioritizing immediate legibility of financial health.\n- **Primary (Deep Indigo):** Used for primary actions, active states, and branding. It provides a stable, professional foundation.\n- **Secondary (Soft Emerald):** Exclusively signifies positive balances, \"paid\" statuses, and growth.\n- **Accent (Warm Rose):** Reserved for debts, negative balances, and critical alerts to ensure high visibility without being aggressive.\n- **Neutral/Surface:** In light mode, surfaces use a clean white with 70% opacity and a 12px blur. In dark mode, surfaces utilize a deep slate to maintain contrast while reducing eye strain.\n\n## Typography\nThe typography utilizes **Geist** for its exceptional clarity and technical \"mono-adjacent\" feel in numerical data. \n- **Numerical Data:** Always use tabular figures (tnum) for transaction amounts to ensure vertical alignment in tables.\n- **Hierarchy:** Use weight (Medium/SemiBold) rather than scale alone to differentiate headers.\n- **Readability:** Body text maintains a generous line height (1.5x) to ensure long lists of transactions remain scannable.\n\n## Layout & Spacing\nThe layout follows a **Fluid Grid** model with a maximum container width of 1280px for dashboard views.\n- **Rhythm:** An 8px base grid governs all padding and margins.\n- **Desktop:** 12-column grid with 24px gutters. Use sidebar navigation (240px fixed) to maximize horizontal space for data tables.\n- **Mobile:** Single column with 16px side margins. Bottom-sheet navigation is preferred for primary actions (like \"Add Expense\").\n- **Spacing Logic:** Use `md` (16px) for internal card padding and `lg` (24px) for spacing between major sections.\n\n## Elevation & Depth\nThis design system avoids heavy, dark shadows in favor of **Tonal Elevation** and **Backdrop Blurs**.\n- **Level 0 (Background):** Flat, solid color.\n- **Level 1 (Cards/Tables):** Glassmorphic surface (70% opacity) with a 1px stroke (10% opacity white) and a subtle 4px blur shadow.\n- **Level 2 (Modals/Popovers):** Higher opacity (90%), 20px backdrop blur, and a diffused 12px shadow (`0 10px 15px -3px rgba(0,0,0,0.1)`).\n- **Glass Effect:** Use a subtle noise texture overlay (2% opacity) on glass surfaces to prevent color banding in dark mode.\n\n## Shapes\nThe shape language is consistently \"Rounded\" to soften the professional tone and make the app feel accessible.\n- **Standard (8px):** Buttons, input fields, and small UI elements.\n- **Large (16px):** Main dashboard cards and container wrappers.\n- **Extra Large (24px):** Hero sections and promotional banners.\n- **Full (Pill):** Used for status badges (Paid, Pending) and toggle switches.\n\n## Components\n- **Buttons:** Primary buttons feature a subtle top-to-bottom gradient (Primary to a slightly darker shade) with a 1px inner border.\n- **Cards:** Use \"soft borders\"—a 1px solid border at 5% opacity that is slightly darker/lighter than the background to define the glass edge.\n- **Data Tables:** Row hover states should use a 5% primary color tint. Transaction amounts should be right-aligned.\n- **Expense Chips:** Small, pill-shaped indicators for categories (e.g., \"Food\", \"Rent\") with low-saturation background tints of the primary color.\n- **Progress Bars:** Thin (4px) rounded tracks for \"budget used\" metrics, using secondary/accent colors for status.\n- **Inputs:** Focus states should utilize a 2px outer glow of the primary color with 20% opacity.",
+          "font": "GEIST",
+          "headlineFont": "GEIST",
+          "headlineFontFamily": "Geist",
+          "labelFont": "GEIST",
+          "labelFontFamily": "Geist",
+          "namedColors": {
+            "background": "#fcf8ff",
+            "error": "#ba1a1a",
+            "error_container": "#ffdad6",
+            "inverse_on_surface": "#f3effc",
+            "inverse_primary": "#c3c0ff",
+            "inverse_surface": "#302f39",
+            "on_background": "#1b1b24",
+            "on_error": "#ffffff",
+            "on_error_container": "#93000a",
+            "on_primary": "#ffffff",
+            "on_primary_container": "#dad7ff",
+            "on_primary_fixed": "#0f0069",
+            "on_primary_fixed_variant": "#3323cc",
+            "on_secondary": "#ffffff",
+            "on_secondary_container": "#00714d",
+            "on_secondary_fixed": "#002113",
+            "on_secondary_fixed_variant": "#005236",
+            "on_surface": "#1b1b24",
+            "on_surface_variant": "#464555",
+            "on_tertiary": "#ffffff",
+            "on_tertiary_container": "#ffd0d2",
+            "on_tertiary_fixed": "#40000d",
+            "on_tertiary_fixed_variant": "#92002a",
+            "outline": "#777587",
+            "outline_variant": "#c7c4d8",
+            "primary": "#3525cd",
+            "primary_container": "#4f46e5",
+            "primary_fixed": "#e2dfff",
+            "primary_fixed_dim": "#c3c0ff",
+            "secondary": "#006c49",
+            "secondary_container": "#6cf8bb",
+            "secondary_fixed": "#6ffbbe",
+            "secondary_fixed_dim": "#4edea3",
+            "surface": "#fcf8ff",
+            "surface_bright": "#fcf8ff",
+            "surface_container": "#f0ecf9",
+            "surface_container_high": "#eae6f4",
+            "surface_container_highest": "#e4e1ee",
+            "surface_container_low": "#f5f2ff",
+            "surface_container_lowest": "#ffffff",
+            "surface_dim": "#dcd8e5",
+            "surface_tint": "#4d44e3",
+            "surface_variant": "#e4e1ee",
+            "tertiary": "#95002b",
+            "tertiary_container": "#bf0f3c",
+            "tertiary_fixed": "#ffdadb",
+            "tertiary_fixed_dim": "#ffb2b7"
+          },
+          "overridePrimaryColor": "#4f46e5",
+          "overrideSecondaryColor": "#10b981",
+          "overrideTertiaryColor": "#f43f5e",
+          "roundness": "ROUND_EIGHT",
+          "spacing": {
+            "base": "4px",
+            "container-max": "1280px",
+            "gutter": "24px",
+            "lg": "24px",
+            "md": "16px",
+            "sm": "8px",
+            "xl": "40px",
+            "xs": "4px"
+          },
+          "spacingScale": 2,
+          "typography": {
+            "body-lg": {
+              "fontFamily": "Geist",
+              "fontSize": "18px",
+              "fontWeight": "400",
+              "lineHeight": "28px"
+            },
+            "body-md": {
+              "fontFamily": "Geist",
+              "fontSize": "16px",
+              "fontWeight": "400",
+              "lineHeight": "24px"
+            },
+            "display-lg": {
+              "fontFamily": "Geist",
+              "fontSize": "48px",
+              "fontWeight": "600",
+              "letterSpacing": "-0.02em",
+              "lineHeight": "56px"
+            },
+            "headline-lg": {
+              "fontFamily": "Geist",
+              "fontSize": "32px",
+              "fontWeight": "600",
+              "letterSpacing": "-0.02em",
+              "lineHeight": "40px"
+            },
+            "headline-lg-mobile": {
+              "fontFamily": "Geist",
+              "fontSize": "24px",
+              "fontWeight": "600",
+              "letterSpacing": "-0.01em",
+              "lineHeight": "32px"
+            },
+            "headline-md": {
+              "fontFamily": "Geist",
+              "fontSize": "24px",
+              "fontWeight": "500",
+              "lineHeight": "32px"
+            },
+            "label-md": {
+              "fontFamily": "Geist",
+              "fontSize": "14px",
+              "fontWeight": "500",
+              "letterSpacing": "0.01em",
+              "lineHeight": "20px"
+            },
+            "label-sm": {
+              "fontFamily": "Geist",
+              "fontSize": "12px",
+              "fontWeight": "600",
+              "lineHeight": "16px"
+            }
+          }
+        }
+      },
+      "name": "assets/878546a3a43d4ec18c9224357c9cb79f",
+      "version": "1"
+    }
+  ]
+}

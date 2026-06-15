@@ -1,0 +1,65 @@
+[
+  {
+    "name": "02_login",
+    "title": "Login - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "1768"
+  },
+  {
+    "name": "03_register",
+    "title": "Register - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "1806"
+  },
+  {
+    "name": "04_dashboard",
+    "title": "Dashboard - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "3736"
+  },
+  {
+    "name": "05_groups",
+    "title": "Groups - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "3008"
+  },
+  {
+    "name": "06_expenses",
+    "title": "Expenses - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "2790"
+  },
+  {
+    "name": "07_add_expense",
+    "title": "Add Expense - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "1768"
+  },
+  {
+    "name": "08_csv_import",
+    "title": "CSV Import & Reports - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "5762"
+  },
+  {
+    "name": "09_settings_profile",
+    "title": "Settings & Profile - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "3300"
+  },
+  {
+    "name": "10_settlements",
+    "title": "Settlements - SplitFlow",
+    "deviceType": "MOBILE",
+    "width": "780",
+    "height": "3788"
+  }
+]

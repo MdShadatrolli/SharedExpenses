@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - SplitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#00714d",
+                    "secondary-container": "#6cf8bb",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#0f0069",
+                    "on-surface-variant": "#464555",
+                    "secondary-fixed-dim": "#4edea3",
+                    "surface-container-highest": "#e4e1ee",
+                    "surface-container-high": "#eae6f4",
+                    "on-secondary-fixed": "#002113",
+                    "primary": "#3525cd",
+                    "surface-container-low": "#f5f2ff",
+                    "on-background": "#1b1b24",
+                    "on-tertiary-fixed": "#40000d",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#92002a",
+                    "on-surface": "#1b1b24",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdadb",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fcf8ff",
+                    "outline": "#777587",
+                    "tertiary-container": "#bf0f3c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-tertiary-container": "#ffd0d2",
+                    "inverse-surface": "#302f39",
+                    "secondary": "#006c49",
+                    "on-error": "#ffffff",
+                    "tertiary": "#95002b",
+                    "on-secondary-fixed-variant": "#005236",
+                    "surface": "#fcf8ff",
+                    "inverse-on-surface": "#f3effc",
+                    "outline-variant": "#c7c4d8",
+                    "tertiary-fixed-dim": "#ffb2b7",
+                    "primary-fixed": "#e2dfff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "surface-container": "#f0ecf9",
+                    "error": "#ba1a1a",
+                    "background": "#fcf8ff",
+                    "surface-dim": "#dcd8e5",
+                    "surface-variant": "#e4e1ee",
+                    "primary-container": "#4f46e5",
+                    "on-primary-container": "#dad7ff",
+                    "surface-tint": "#4d44e3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "xl": "40px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "body-md": ["Geist"],
+                    "body-lg": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .reveal-up {
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .noise-bg {
+            background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+            opacity: 0.02;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Top/Left Graphic Section -->
+<section class="relative w-full h-[353px] md:h-screen md:w-1/2 overflow-hidden bg-primary-container flex items-center justify-center p-xl">
+<!-- Background Animation Element -->
+<div class="absolute inset-0 z-0">
+<div class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-secondary rounded-full blur-[120px] opacity-30"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary rounded-full blur-[100px] opacity-40"></div>
+<div class="absolute inset-0 noise-bg"></div>
+</div>
+<div class="relative z-10 w-full max-w-md flex flex-col items-center text-center">
+<!-- Brand Anchor -->
+<div class="mb-xl reveal-up" style="animation-delay: 0.1s;">
+<div class="flex items-center gap-sm justify-center mb-md">
+<span class="material-symbols-outlined text-[48px] text-on-primary-container" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<h1 class="font-headline-lg text-headline-lg text-on-primary-container tracking-tighter">SplitFlow</h1>
+</div>
+</div>
+<!-- Glassmorphic Illustration Card -->
+<div class="glass-panel rounded-xl p-lg w-full shadow-2xl float-animation reveal-up" style="animation-delay: 0.3s;">
+<div class="aspect-square w-full rounded-lg overflow-hidden bg-surface-container mb-md relative border border-white/20">
+<img alt="Financial visualization" class="w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="A sophisticated glassmorphic 3D composition of glowing digital currencies and fluid financial data charts floating in a deep indigo space. The scene is illuminated by soft neon primary blue and emerald green highlights, creating a high-end fintech aesthetic. Transparent layers of geometric shapes overlap with soft blurs and sharp highlights, suggesting clarity, growth, and modern financial control." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIl4KHjL0epyeNr8uEFZJ0UqpbwgY47lk5qw7ZPRoTmqZ0ykAGYHJOXUPiY5HXMC5WhWKShaJSXlEVki3a_QXsDTqlyLmyH3AYNOSvdkrOY_vCu5GnFzCTtWzhWnl3fZEPFV9uHrSC4oB_KrL9BGHbW3aXskLGg4Or_amyI3cVeKzf6jcogC8z2WOXpGRgxI17giZYIdBqJlo_gnQGkk2TyxgAmMkeqaphuFnfIDKLw4rjwZxZxGzVRui8PzHncaTXYC_u6ljky-VA"/>
+<!-- Overlay Micro-stats -->
+<div class="absolute top-4 left-4 bg-white/90 p-sm rounded-lg shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">trending_up</span>
+<span class="font-label-md text-label-md text-on-surface">+14.2%</span>
+</div>
+<div class="absolute bottom-4 right-4 glass-panel px-md py-sm rounded-full flex items-center gap-2 border border-white/40">
+<span class="font-label-md text-label-md text-primary font-bold">Split & Settle</span>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-xs">Seamless Settlements</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage group expenses without the headache. High precision, zero friction.</p>
+</div>
+</div>
+</section>
+<!-- Bottom/Right Form Section -->
+<main class="w-full h-[530px] md:h-screen md:w-1/2 flex items-center justify-center p-md bg-surface overflow-y-auto">
+<div class="w-full max-w-sm reveal-up" style="animation-delay: 0.5s;">
+<div class="mb-xl">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Welcome back</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Please enter your details to sign in.</p>
+</div>
+<form action="#" class="space-y-lg">
+<div class="space-y-sm">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="email">Email address</label>
+<input class="w-full px-md py-md rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none" id="email" placeholder="alex@example.com" type="email"/>
+</div>
+<div class="space-y-sm relative">
+<div class="flex justify-between items-center">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<input class="w-full px-md py-md rounded-lg border-outline-variant bg-surface-container-low text-on-surface focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 outline-none" id="password" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex items-center gap-sm">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" id="remember" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface" for="remember">Remember for 30 days</label>
+</div>
+<button class="w-full bg-primary text-on-primary py-md px-lg rounded-xl font-label-md text-label-md font-semibold shadow-lg hover:bg-primary-container transition-all active:scale-[0.98] duration-200" type="submit">
+                    Sign in to SplitFlow
+                </button>
+<div class="relative py-md">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/30"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-surface px-md font-label-sm text-label-sm text-on-surface-variant">OR CONTINUE WITH</span>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-md bg-surface-container-lowest border border-outline-variant px-lg py-md rounded-xl hover:bg-surface-container-low transition-colors duration-200" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.26.81-.58z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Sign in with Google</span>
+</button>
+</form>
+<p class="mt-xl text-center font-body-md text-body-md text-on-surface-variant">
+                Don't have an account? 
+                <a class="text-primary font-semibold hover:underline decoration-2 underline-offset-4" href="#">Create account</a>
+</p>
+</div>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+                input.parentElement.style.transition = 'transform 0.2s ease-out';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Simple form submission animation
+        const loginBtn = document.querySelector('button[type="submit"]');
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+            setTimeout(() => {
+                loginBtn.innerHTML = 'Sign in to SplitFlow';
+            }, 1500);
+        });
+    </script>
+</body></html>

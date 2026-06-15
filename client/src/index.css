@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3525cd;
+  --color-primary-container: #4f46e5;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #dad7ff;
+  --color-primary-fixed: #e2dfff;
+  --color-primary-fixed-dim: #c3c0ff;
+  --color-secondary: #006c49;
+  --color-secondary-container: #6cf8bb;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #00714d;
+  --color-tertiary: #95002b;
+  --color-tertiary-container: #bf0f3c;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #ffd0d2;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-surface: #fcf8ff;
+  --color-surface-dim: #dcd8e5;
+  --color-surface-bright: #fcf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f2ff;
+  --color-surface-container: #f0ecf9;
+  --color-surface-container-high: #eae6f4;
+  --color-surface-container-highest: #e4e1ee;
+  --color-on-surface: #1b1b24;
+  --color-on-surface-variant: #464555;
+  --color-outline: #777587;
+  --color-outline-variant: #c7c4d8;
+  --color-inverse-surface: #302f39;
+  --color-inverse-on-surface: #f3effc;
+  --color-background: #fcf8ff;
+  --color-on-background: #1b1b24;
+
+  --font-sans: 'Geist', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-background);
+  color: var(--color-on-background);
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark {
+  --color-background: #13121a;
+  --color-on-background: #fcf8ff;
+  --color-surface: #1b1b24;
+  --color-surface-dim: #13121a;
+  --color-surface-bright: #2b2a36;
+  --color-surface-container-lowest: #0d0d12;
+  --color-surface-container-low: #18171f;
+  --color-surface-container: #201f28;
+  --color-surface-container-high: #2b2a36;
+  --color-surface-container-highest: #363442;
+  --color-on-surface: #fcf8ff;
+  --color-on-surface-variant: #c7c4d8;
+  --color-outline: #8d8a9e;
+  --color-outline-variant: #464555;
+  --color-inverse-surface: #fcf8ff;
+  --color-inverse-on-surface: #1b1b24;
+  --color-primary: #c3c0ff;
+  --color-on-primary: #0f0069;
+  --color-primary-container: #3323cc;
+  --color-on-primary-container: #e2dfff;
+  --color-secondary: #6ffbbe;
+  --color-on-secondary: #003823;
+  --color-secondary-container: #005236;
+  --color-on-secondary-container: #6ffbbe;
+}
+
+/* Material Symbols scaling */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  vertical-align: middle;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-outline-variant); border-radius: 10px; }
+
+/* Glass Cards and Panels */
+.glass-card, .glass-panel {
+  background: rgba(252, 248, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(27, 27, 36, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.mesh-gradient {
+  background-color: #fcf8ff;
+  background-image: 
+      radial-gradient(at 0% 0%, hsla(248,68%,60%,0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(158,82%,50%,0.1) 0px, transparent 50%);
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCjcZL2bE5UxFTZC9MWtFl_ME5hOl-CIr6a2CC-louZyST4FLqSgzlYmgwGh_H4bX0Wx1rru7mUp_yyWD42-gQsBh283QmcnKCEoKD4IeXIkfVTi2r10Nq3rZj-X11oG7PgTW6Kk-0m4V27ixErWdHQDps_NoQQfAaxLV7YAShW3g-EV3sSX_qrtsvQBE9MVpm76q0uD9I0KjYtzBAkmGXvC7p81HmxKoheUAHNNoSvzGWg2Iu5jmdbE_-WA6L7uZGBC7KBDH-56EYM);
+}
+
+/* Micro-interaction scale on click */
+.micro-interaction:active { transform: scale(0.98); }
+
+/* Fade-in animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.scale-in { animation: scaleIn 0.3s ease both; }

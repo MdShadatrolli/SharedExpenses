@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settlements | SplitFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#00714d",
+                    "secondary-container": "#6cf8bb",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#0f0069",
+                    "on-surface-variant": "#464555",
+                    "secondary-fixed-dim": "#4edea3",
+                    "surface-container-highest": "#e4e1ee",
+                    "surface-container-high": "#eae6f4",
+                    "on-secondary-fixed": "#002113",
+                    "primary": "#3525cd",
+                    "surface-container-low": "#f5f2ff",
+                    "on-background": "#1b1b24",
+                    "on-tertiary-fixed": "#40000d",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#92002a",
+                    "on-surface": "#1b1b24",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdadb",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fcf8ff",
+                    "outline": "#777587",
+                    "tertiary-container": "#bf0f3c",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-tertiary-container": "#ffd0d2",
+                    "inverse-surface": "#302f39",
+                    "secondary": "#006c49",
+                    "on-error": "#ffffff",
+                    "tertiary": "#95002b",
+                    "on-secondary-fixed-variant": "#005236",
+                    "surface": "#fcf8ff",
+                    "inverse-on-surface": "#f3effc",
+                    "outline-variant": "#c7c4d8",
+                    "tertiary-fixed-dim": "#ffb2b7",
+                    "primary-fixed": "#e2dfff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "surface-container": "#f0ecf9",
+                    "error": "#ba1a1a",
+                    "background": "#fcf8ff",
+                    "surface-dim": "#dcd8e5",
+                    "surface-variant": "#e4e1ee",
+                    "primary-container": "#4f46e5",
+                    "on-primary-container": "#dad7ff",
+                    "surface-tint": "#4d44e3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "xl": "40px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "body-md": ["Geist"],
+                    "body-lg": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "label-md": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                    "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                    "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+            }
+          },
+        },
+      }
+    </script>
+<style>body {
+    font-family: "Geist", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fcf8ff
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(199, 196, 216, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05)
+    }
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.02;
+    pointer-events: none;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuC-jQlYQe_4UJgX6yv4yO_IpWBceu8kDRm5PoncjIK93Wszm4K8snng9LbEFh8d05nWxS20JaVVPXOMTY2-3K461u_jNXBcDh1gYiBjAHKTyTgENJjH2DOaQfdLBCnjOTQ69_pf1C7gbo2cYN4pvfw4a_rSwxQXAtUBZM1nfYmM2YaWnhKST3NI6oYTJKhug3qaaMskFJEpm6t-3-GNpsQifgR7K9-ZswMR6weshXLu4EnYvIpyyZRuaHBZ26I_Hl75Ts_vBwnC1_nM)
+    }
+.spring-hover {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    }
+.spring-hover:hover {
+    transform: scale(1.02)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<div class="noise-overlay"></div>
+<!-- Navigation Drawer (Desktop) -->
+<aside class="fixed left-0 top-0 h-full w-[240px] z-50 bg-surface-container-low/80 backdrop-blur-xl border-r border-outline-variant/10 shadow-xl hidden md:flex flex-col gap-sm p-md transition-transform duration-300">
+<div class="px-md py-lg">
+<h1 class="font-headline-md text-headline-md font-black text-primary">SplitFlow</h1>
+</div>
+<div class="flex items-center gap-md px-md py-sm mb-lg">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">AM</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md font-semibold truncate">Alex Morgan</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pro Account</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs flex-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Groups</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Expenses</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-semibold rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">handshake</span>
+<span class="font-label-md text-label-md">Settlements</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-label-md text-label-md">CSV Import</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Top App Bar (Mobile-centric layout but visible everywhere) -->
+<header class="fixed top-0 w-full z-40 bg-surface/70 backdrop-blur-md border-b border-outline-variant/10 shadow-sm md:pl-[240px]">
+<div class="flex justify-between items-center px-lg py-md max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="md:hidden font-bold text-headline-md text-primary">SplitFlow</div>
+<div class="hidden md:block font-headline-md text-headline-md font-semibold text-on-surface">Settlements</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-base hover:bg-primary/5 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</button>
+<button class="p-base hover:bg-primary/5 rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-[240px] pt-20 pb-24 px-md md:px-lg min-h-screen z-10 relative">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Summary Header -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="glass-card rounded-xl p-lg flex flex-col gap-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Total Balance</span>
+<h2 class="font-display-lg text-display-lg text-primary">₹4,250</h2>
+<p class="font-label-sm text-label-sm text-secondary font-semibold flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12% from last month
+                    </p>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col gap-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">You are owed</span>
+<h2 class="font-display-lg text-display-lg text-secondary">₹7,800</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">From 4 people</p>
+</div>
+<div class="glass-card rounded-xl p-lg flex flex-col gap-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">You owe</span>
+<h2 class="font-display-lg text-display-lg text-tertiary">₹3,550</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">To 2 people</p>
+</div>
+</section>
+<!-- Who Owes Whom Bento Grid -->
+<section>
+<div class="flex justify-between items-end mb-md">
+<h3 class="font-headline-md text-headline-md font-semibold">Balance Insights</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<!-- High-contrast Card 1 -->
+<div class="md:col-span-2 glass-card rounded-xl p-lg flex items-center justify-between group spring-hover">
+<div class="flex items-center gap-md">
+<div class="relative">
+<img class="w-16 h-16 rounded-full object-cover border-2 border-primary-container" data-alt="A portrait of a young woman with a warm, friendly smile, set against a soft bokeh background of a high-end coffee shop. The lighting is warm and natural, creating a professional yet approachable aesthetic for a fintech app user profile. The color palette features soft neutrals and a hint of deep indigo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0V7buPxmEYWkfC25uPl7j5cOXpyx39okZutNZMyaM5tSIU_AnOZPOgWPrmdy0kWJsxiJFcy8vdVKzIQ_FeR7Ql3a-OpfdVwLb28UvLYqt5vDFUma5JkKuWElaFkVDgiXyIH8acL_XkLXitA5-TlsSnAQ5RSuYvhDrdzcmbMyQ3H3NGxD6Nui9IpasXZfdfdVkVtn9vkFp8Kovd4nKHL9ezgYP1codHVwsqAIYxMo4oZWT3ed76oxqFjHyDAmogr2ZADawjHKPomj1"/>
+<span class="absolute bottom-0 right-0 w-5 h-5 bg-secondary border-2 border-surface rounded-full"></span>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md">Aisha owes you</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Trip to Goa - Flight Split</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-display-lg text-display-lg text-primary">₹1,200</span>
+<div class="flex gap-sm mt-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-primary text-on-primary px-md py-xs rounded-lg font-label-sm text-label-sm shadow-md">Remind</button>
+</div>
+</div>
+</div>
+<!-- Balance Card 2 -->
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between spring-hover">
+<div class="flex items-center justify-between mb-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">outbound</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-bold">YOU OWE</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold">Rohan</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Dinner at O Pedro</p>
+</div>
+<div class="mt-md">
+<span class="font-headline-lg text-headline-lg text-on-surface">₹2,450</span>
+</div>
+</div>
+<!-- Balance Card 3 -->
+<div class="glass-card rounded-xl p-lg flex flex-col justify-between spring-hover">
+<div class="flex items-center justify-between mb-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">south_west</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">OWES YOU</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold">Kabir</h4>
+<p class="font-label-md text-label-md text-on-surface-variant">Internet & Electricity</p>
+</div>
+<div class="mt-md">
+<span class="font-headline-lg text-headline-lg text-on-surface">₹3,800</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Settlement Cards List -->
+<section class="space-y-md">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md font-semibold">Pending Settlements</h3>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container border border-outline-variant/30 rounded-lg font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                        </button>
+</div>
+</div>
+<div class="space-y-sm">
+<!-- Settlement Item 1 -->
+<div class="glass-card rounded-xl p-md md:p-lg flex flex-col md:flex-row md:items-center gap-md md:gap-lg transition-colors hover:bg-white/80">
+<div class="flex items-center gap-md flex-1">
+<div class="flex -space-x-4">
+<img class="w-12 h-12 rounded-full border-2 border-surface object-cover" data-alt="A professional headshot of a middle-aged man with glasses, looking directly at the camera with a calm and confident expression. He is set in a bright, modern office with soft daylight and clean lines. The image style is sharp and vibrant, perfectly fitting a modern fintech application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA05lFldT-rEQTs2xUbHDiK4FUKznUtX8S3mq8ZcPoiNAC-1FvwdKn3tjkQdqF5r0dpMbZBvLkLI7JnPC7fydspxM-yULS_zT8XxFYOeVr1wznkbCfYL62hIBaS4LAd-QXmMuDK7c7N4s68G5eR97KMSlAqvA7kOPhykW4FV-yn6WWompFaQfOypwEZncXs9vio0YiF3-n2fTI27FXNjpufdAfk4u5oeffIjgEnDn3JPz8VTR1Cf8FVICtCmSVIK0FAbHmTLlcKyBk4"/>
+<div class="w-12 h-12 rounded-full border-2 border-surface bg-primary text-on-primary flex items-center justify-center font-bold text-lg">AM</div>
+</div>
+<div>
+<p class="font-body-md text-body-md">
+<span class="font-semibold text-on-surface">Rohan</span> 
+                                    is paying 
+                                    <span class="font-semibold text-on-surface">Alex Morgan</span>
+</p>
+<div class="flex items-center gap-sm mt-xs">
+<span class="bg-secondary-container text-on-secondary-container px-sm py-0.5 rounded-full font-label-sm text-label-sm">In Progress</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">• Requested 2h ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-lg">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Settlement Amount</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">₹2,450.00</p>
+</div>
+<div class="flex gap-sm">
+<button class="h-10 px-md bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-md hover:bg-primary-container transition-all active:scale-95">Settle Up</button>
+<div class="flex items-center border border-outline-variant/30 rounded-lg overflow-hidden">
+<button class="h-10 px-sm hover:bg-surface-container-high transition-colors" title="Edit">
+<span class="material-symbols-outlined text-on-surface-variant">edit</span>
+</button>
+<div class="w-px h-6 bg-outline-variant/30"></div>
+<button class="h-10 px-sm hover:bg-error-container/20 text-error transition-colors" title="Delete">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Settlement Item 2 -->
+<div class="glass-card rounded-xl p-md md:p-lg flex flex-col md:flex-row md:items-center gap-md md:gap-lg transition-colors hover:bg-white/80">
+<div class="flex items-center gap-md flex-1">
+<div class="flex -space-x-4">
+<div class="w-12 h-12 rounded-full border-2 border-surface bg-secondary text-on-secondary flex items-center justify-center font-bold text-lg">K</div>
+<div class="w-12 h-12 rounded-full border-2 border-surface bg-primary text-on-primary flex items-center justify-center font-bold text-lg">AM</div>
+</div>
+<div>
+<p class="font-body-md text-body-md">
+<span class="font-semibold text-on-surface">Kabir</span> 
+                                    is paying 
+                                    <span class="font-semibold text-on-surface">Alex Morgan</span>
+</p>
+<div class="flex items-center gap-sm mt-xs">
+<span class="bg-surface-container-highest text-on-surface-variant px-sm py-0.5 rounded-full font-label-sm text-label-sm">Pending Approval</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">• Requested 1d ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-lg">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Settlement Amount</p>
+<p class="font-headline-md text-headline-md text-on-surface font-bold">₹3,800.00</p>
+</div>
+<div class="flex gap-sm">
+<button class="h-10 px-md bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-md hover:bg-primary-container transition-all active:scale-95">Settle Up</button>
+<div class="flex items-center border border-outline-variant/30 rounded-lg overflow-hidden">
+<button class="h-10 px-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">edit</span>
+</button>
+<div class="w-px h-6 bg-outline-variant/30"></div>
+<button class="h-10 px-sm hover:bg-error-container/20 text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Margin for Mobile Nav -->
+<div class="h-16 md:hidden"></div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-lg border-t border-outline-variant/10 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center px-md pb-safe pt-sm z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm">Groups</span>
+</a>
+<button class="flex flex-col items-center justify-center -mt-8 bg-primary text-on-primary w-14 h-14 rounded-full shadow-lg ring-4 ring-background">
+<span class="material-symbols-outlined" style="font-size: 32px;">add</span>
+</button>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">handshake</span>
+<span class="font-label-sm text-label-sm">Settlements</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-sm text-label-sm">Activity</span>
+</a>
+</nav>
+<!-- FAB (Contextual for Desktop/Mobile) -->
+<button class="fixed right-lg bottom-lg hidden md:flex items-center gap-sm bg-primary text-on-primary px-lg py-md rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined">add_card</span>
+<span class="font-label-md text-label-md">New Settlement</span>
+</button>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = '';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // Search Bar or Global Actions simulation could go here
+    </script>
+</body></html>

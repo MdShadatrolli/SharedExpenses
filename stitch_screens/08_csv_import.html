@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SplitFlow | CSV Import &amp; Reports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(119, 117, 135, 0.1);
+        }
+        .noise-overlay {
+            position: relative;
+        }
+        .noise-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/p6.png");
+            opacity: 0.02;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .drag-over {
+            border-color: #3525cd !important;
+            background-color: rgba(53, 37, 205, 0.05) !important;
+        }
+        @keyframes progress-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: progress-shimmer 1.5s infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#00714d",
+                      "secondary-container": "#6cf8bb",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#0f0069",
+                      "on-surface-variant": "#464555",
+                      "secondary-fixed-dim": "#4edea3",
+                      "surface-container-highest": "#e4e1ee",
+                      "surface-container-high": "#eae6f4",
+                      "on-secondary-fixed": "#002113",
+                      "primary": "#3525cd",
+                      "surface-container-low": "#f5f2ff",
+                      "on-background": "#1b1b24",
+                      "on-tertiary-fixed": "#40000d",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#92002a",
+                      "on-surface": "#1b1b24",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#ffdadb",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#fcf8ff",
+                      "outline": "#777587",
+                      "tertiary-container": "#bf0f3c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-tertiary-container": "#ffd0d2",
+                      "inverse-surface": "#302f39",
+                      "secondary": "#006c49",
+                      "on-error": "#ffffff",
+                      "tertiary": "#95002b",
+                      "on-secondary-fixed-variant": "#005236",
+                      "surface": "#fcf8ff",
+                      "inverse-on-surface": "#f3effc",
+                      "outline-variant": "#c7c4d8",
+                      "tertiary-fixed-dim": "#ffb2b7",
+                      "primary-fixed": "#e2dfff",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#c3c0ff",
+                      "surface-container": "#f0ecf9",
+                      "error": "#ba1a1a",
+                      "background": "#fcf8ff",
+                      "surface-dim": "#dcd8e5",
+                      "surface-variant": "#e4e1ee",
+                      "primary-container": "#4f46e5",
+                      "on-primary-container": "#dad7ff",
+                      "surface-tint": "#4d44e3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "xl": "40px",
+                      "xs": "4px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "body-md": ["Geist"],
+                      "body-lg": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "display-lg": ["Geist"],
+                      "label-md": ["Geist"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-surface noise-overlay">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-40 bg-surface/70 backdrop-blur-md border-b border-outline-variant/10 shadow-sm">
+<div class="flex justify-between items-center px-lg py-md max-w-container-max mx-auto">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">SplitFlow</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:bg-primary/5 transition-colors rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/20">
+<img alt="User" data-alt="Close up studio portrait of a young professional with short hair and a clean-shaven face, looking directly into the camera with a confident smile. The lighting is soft and neutral, typical of a professional corporate headshot. The background is a solid light grey, ensuring the focus remains on the individual, fitting a clean light-mode fintech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwQVgJFxCEG0SZ6BilJQMqtuoqp4qHhBa-zSQtgeqMQgYtQWnHqisbXy-bo8AqkZslkHRdrCcQw-pH38EmtkUZov-naqFYAMAwxO1ogxP7hNV82R-hCW-Bkton5EsRAxNV7DOwbxb40B6cvLV01XzYaO2ZV-CI0GuMLVC33KaIczSJ5IE46BFQbF3lJxxDB86hHO9cO3dGDumdFae2MJDOVWd81RpO-X08M3_x6Csvzo4FBoTONUET8PYS0kyr_dM9MsAka1sSoKIJ"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-[240px] z-50 bg-surface-container-low/80 backdrop-blur-xl border-r border-outline-variant/10 shadow-xl hidden md:flex flex-col gap-sm p-md pt-24">
+<div class="flex flex-col gap-xs mb-lg px-sm">
+<span class="font-label-md text-label-md font-black text-primary">Alex Morgan</span>
+<span class="text-on-surface-variant text-sm">Pro Account</span>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Groups</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md">Expenses</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm bg-primary-container text-on-primary-container font-semibold rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-label-md text-label-md">CSV Import</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<div class="my-md border-t border-outline-variant/10"></div>
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-md bg-primary/5 rounded-xl">
+<span class="font-label-sm text-label-sm block text-primary font-bold">NEXT SETTLEMENT</span>
+<span class="font-body-md text-body-md block mt-1">$420.50</span>
+<button class="mt-sm w-full py-2 bg-primary text-on-primary rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors">
+                Pay Now
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-[240px] pt-24 px-md md:px-lg pb-32 max-w-container-max mx-auto">
+<header class="mb-lg">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Data Integration</h1>
+<p class="text-on-surface-variant mt-1">Upload your bank statements to automatically categorize and split group expenses.</p>
+</header>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md mb-lg">
+<div class="glass-card p-md rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-surface-container-highest rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="data_usage">data_usage</span>
+</div>
+</div>
+<span class="text-on-surface-variant text-label-md">Total Records</span>
+<div class="font-headline-md text-headline-md mt-1">1,248</div>
+</div>
+<div class="glass-card p-md rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-secondary-container rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<span class="text-on-surface-variant text-label-md">Imported</span>
+<div class="font-headline-md text-headline-md mt-1">1,120</div>
+</div>
+<div class="glass-card p-md rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-primary-fixed rounded-lg text-on-primary-fixed-variant">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+<span class="text-on-surface-variant text-label-md">Auto Fixed</span>
+<div class="font-headline-md text-headline-md mt-1">94</div>
+</div>
+<div class="glass-card p-md rounded-xl shadow-sm border-error/20 bg-error-container/10">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-2 bg-error-container rounded-lg text-on-error-container">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+</div>
+<span class="text-on-surface-variant text-label-md">Needs Review</span>
+<div class="font-headline-md text-headline-md mt-1 text-error">34</div>
+</div>
+</div>
+<!-- Import Zone & Progress -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<div class="lg:col-span-2 flex flex-col gap-lg">
+<!-- Dropzone -->
+<div class="glass-card rounded-2xl border-2 border-dashed border-outline-variant p-xl flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-primary/50 group cursor-pointer" id="dropzone">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">Drop your CSV here</h3>
+<p class="text-on-surface-variant max-w-sm">Drag and drop your file or click to browse. Supported formats: .csv, .xlsx (Max 10MB)</p>
+<button class="mt-lg px-lg py-3 bg-primary text-on-primary rounded-xl font-semibold shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                        Select Files
+                    </button>
+</div>
+<!-- Active Progress -->
+<div class="glass-card rounded-2xl p-lg">
+<div class="flex justify-between items-center mb-md">
+<div class="flex items-center gap-sm">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+</div>
+<div>
+<span class="font-label-md text-label-md block">Statement_April_2024.csv</span>
+<span class="text-xs text-on-surface-variant">4.2 MB • Processing...</span>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary">85%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full w-[85%] shimmer"></div>
+</div>
+<div class="flex justify-between mt-sm">
+<span class="text-xs text-on-surface-variant italic">Cleaning data artifacts...</span>
+<button class="text-xs text-error font-semibold hover:underline">Cancel Import</button>
+</div>
+</div>
+</div>
+<!-- Report Sidebar -->
+<div class="flex flex-col gap-md">
+<div class="glass-card rounded-2xl p-lg flex-1">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-headline-md text-headline-md">Recent Alerts</h2>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Live</span>
+</div>
+<div class="space-y-md">
+<div class="flex gap-md p-md rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="text-error mt-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="error">error</span>
+</div>
+<div>
+<span class="font-label-md text-label-md block group-hover:text-primary transition-colors">Duplicate Detected</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">Row 452 matches a record imported on March 12.</p>
+<span class="text-[10px] text-outline mt-2 block">2 mins ago</span>
+</div>
+</div>
+<div class="flex gap-md p-md rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="text-secondary mt-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified">verified</span>
+</div>
+<div>
+<span class="font-label-md text-label-md block group-hover:text-primary transition-colors">Mapping Complete</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">Headers matched successfully for 12 columns.</p>
+<span class="text-[10px] text-outline mt-2 block">15 mins ago</span>
+</div>
+</div>
+<div class="flex gap-md p-md rounded-xl hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="text-primary mt-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_fix_high">auto_fix_high</span>
+</div>
+<div>
+<span class="font-label-md text-label-md block group-hover:text-primary transition-colors">Auto-Correction</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">42 empty dates filled using sequential interpolation.</p>
+<span class="text-[10px] text-outline mt-2 block">1 hour ago</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-lg py-2 border border-outline-variant/30 text-on-surface-variant font-label-md rounded-lg hover:bg-surface-container-high transition-colors">
+                        View Audit Log
+                    </button>
+</div>
+</div>
+</div>
+<!-- Detail Table -->
+<section class="mt-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-md">
+<h2 class="font-headline-md text-headline-md">Review Processing Items</h2>
+<div class="flex items-center gap-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="pl-10 pr-md py-2 bg-surface-container rounded-lg border-none focus:ring-2 focus:ring-primary/20 text-sm w-full md:w-64" placeholder="Search rows..." type="text"/>
+</div>
+<button class="p-2 bg-surface-container rounded-lg text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant/10">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Row</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Issue Type</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Severity</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Description</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-lg py-md text-sm font-medium">#124</td>
+<td class="px-lg py-md text-sm">Missing Value</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span class="text-xs font-bold uppercase">Medium</span>
+</span>
+</td>
+<td class="px-lg py-md text-sm text-on-surface-variant">Column "Category" is null or contains unknown string.</td>
+<td class="px-lg py-md text-right">
+<span class="px-2 py-1 rounded bg-error-container/20 text-on-error-container text-[11px] font-bold uppercase border border-error/10">Needs Review</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-lg py-md text-sm font-medium">#139</td>
+<td class="px-lg py-md text-sm">Invalid Format</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="text-xs font-bold uppercase">Low</span>
+</span>
+</td>
+<td class="px-lg py-md text-sm text-on-surface-variant">Date format "MM-DD-YY" auto-converted to ISO.</td>
+<td class="px-lg py-md text-right">
+<span class="px-2 py-1 rounded bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold uppercase border border-secondary/10">Auto Fixed</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-lg py-md text-sm font-medium">#142</td>
+<td class="px-lg py-md text-sm">Potential Match</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="text-xs font-bold uppercase">High</span>
+</span>
+</td>
+<td class="px-lg py-md text-sm text-on-surface-variant">Existing transaction with identical amount and date.</td>
+<td class="px-lg py-md text-right">
+<span class="px-2 py-1 rounded bg-error-container/20 text-on-error-container text-[11px] font-bold uppercase border border-error/10">Needs Review</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-lg py-md text-sm font-medium">#156</td>
+<td class="px-lg py-md text-sm">Header Map</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-1 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="text-xs font-bold uppercase">Low</span>
+</span>
+</td>
+<td class="px-lg py-md text-sm text-on-surface-variant">"Txn_Date" mapped to "Date".</td>
+<td class="px-lg py-md text-right">
+<span class="px-2 py-1 rounded bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold uppercase border border-secondary/10">Auto Fixed</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-lg py-md bg-surface-container-low/50 flex items-center justify-between">
+<span class="text-xs text-on-surface-variant">Showing 4 of 34 issues</span>
+<div class="flex gap-2">
+<button class="p-1 rounded hover:bg-surface-container"><span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container"><span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-md pb-safe pt-sm bg-surface/90 backdrop-blur-lg border-t border-outline-variant/10 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-[10px] mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="text-[10px] mt-1">Groups</span>
+</a>
+<button class="flex flex-col items-center justify-center -mt-8">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-on-primary shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="add_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</div>
+<span class="text-[10px] mt-1 font-bold text-primary">Add</span>
+</button>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="text-[10px] mt-1">Import</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="text-[10px] mt-1">Activity</span>
+</a>
+</nav>
+<script>
+        const dropzone = document.getElementById('dropzone');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => {
+                dropzone.classList.add('drag-over');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => {
+                dropzone.classList.remove('drag-over');
+            }, false);
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            console.log('Files dropped:', files);
+            // In a real app, handle file upload here
+        });
+
+        // Simple animation logic for counts
+        document.querySelectorAll('.font-headline-md').forEach(el => {
+            const finalVal = parseInt(el.innerText.replace(/,/g, ''));
+            if (isNaN(finalVal)) return;
+            let startVal = 0;
+            const duration = 1000;
+            const stepTime = Math.abs(Math.floor(duration / finalVal));
+            
+            const timer = setInterval(() => {
+                startVal += Math.ceil(finalVal / 30);
+                if (startVal >= finalVal) {
+                    el.innerText = finalVal.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    el.innerText = startVal.toLocaleString();
+                }
+            }, 30);
+        });
+    </script>
+</body></html>

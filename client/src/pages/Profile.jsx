@@ -298,15 +298,15 @@ export default function Profile() {
                 title="Change profile photo"
               />
             </div>
-            <div className="mb-2 pb-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-xl md:text-2xl font-black text-on-surface leading-tight">{name}</h3>
-                <span className="bg-secondary-container text-on-secondary-container px-2.5 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 border border-secondary/10">
-                  <span className="material-symbols-outlined text-[12px] font-fill-1">verified</span> Verified Member
-                </span>
+              <div className="mb-2 pb-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-xl md:text-2xl font-black text-white bg-black/50 px-3 py-1 rounded-xl leading-tight border border-white/10 backdrop-blur-sm shadow-sm">{name}</h3>
+                  <span className="bg-secondary-container text-on-secondary-container px-2.5 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 border border-secondary/10">
+                    <span className="material-symbols-outlined text-[12px] font-fill-1">verified</span> Verified Member
+                  </span>
+                </div>
+                <p className="text-xs md:text-sm text-white/80 font-medium mt-1 px-1">{email}</p>
               </div>
-              <p className="text-xs md:text-sm text-on-surface-variant font-medium">{email}</p>
-            </div>
           </div>
         </div>
         <div className="pt-16 pb-4 px-6 md:px-8 flex items-center justify-end gap-6 md:gap-8 border-t border-outline-variant/30 mt-4">

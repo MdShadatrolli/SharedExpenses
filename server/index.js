@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { router as authRouter } from './routes/auth.js';
 import { router as usersRouter } from './routes/users.js';
 import { router as groupsRouter } from './routes/groups.js';
@@ -12,6 +14,8 @@ import { router as dashboardRouter } from './routes/dashboard.js';
 import { router as notificationsRouter } from './routes/notifications.js';
 import { authenticateToken } from './middleware/auth.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -33,5 +37,9 @@ app.use('/api/imports', authenticateToken, importsRouter);
 app.use('/api/admin', authenticateToken, adminRouter);
 
 app.get('/api/health', (_, res) => res.json({ status: 'ok' }));
+
+const clientDistPath = path.join(__dirname, '../client/dist');
+app.use(express.static(clientDistPath));
+app.get('/*', (_, res) => res.sendFile(path.join(clientDistPath, 'index.html')));
 
 app.listen(PORT, () => console.log(`SplitFlow API running on port ${PORT}`));

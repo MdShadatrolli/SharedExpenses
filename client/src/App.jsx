@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import Groups from './pages/Groups';
 import Expenses from './pages/Expenses';
@@ -17,6 +19,7 @@ function SidebarAndContent() {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Notification states
   const [notifications, setNotifications] = useState([]);
@@ -84,6 +87,11 @@ function SidebarAndContent() {
     }
   }, [user]);
 
+  // Close sidebar on route change (mobile)
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [location.pathname]);
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -107,86 +115,125 @@ function SidebarAndContent() {
 
   const isActive = (path) => location.pathname === path;
 
-  // Get current page title
   const getPageTitle = () => {
     if (location.pathname.startsWith('/groups/')) return 'Group Details';
     const match = navItems.find(item => item.path === location.pathname);
     return match ? match.label : 'SplitFlow';
   };
 
+  const SidebarContent = () => (
+    <>
+      {/* Brand Logo */}
+      <div className="flex items-center gap-3 mb-6 px-2 py-3">
+        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg">
+          <span className="material-symbols-outlined !text-[24px]">payments</span>
+        </div>
+        <div>
+          <h1 className="font-extrabold text-lg text-primary tracking-tight leading-none">SplitFlow</h1>
+          <p className="text-[10px] text-on-surface-variant/75 font-semibold mt-0.5">Fintech Solutions</p>
+        </div>
+      </div>
+
+      {/* Menu Links */}
+      <nav className="flex-1 flex flex-col gap-1">
+        {navItems.map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-xs font-bold transition-all active:scale-95 duration-150 ${
+              isActive(item.path)
+                ? 'bg-primary/10 text-primary font-extrabold border-r-4 border-primary'
+                : 'text-on-surface-variant hover:text-on-surface hover:bg-primary/5'
+            }`}
+          >
+            <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+            <span>{item.label}</span>
+          </Link>
+        ))}
+      </nav>
+
+      {/* Bottom Actions */}
+      <div className="mt-auto pt-4 flex flex-col gap-1 border-t border-outline-variant/30">
+        <Link
+          to="/add-expense"
+          className="w-full bg-primary hover:bg-primary-container text-white py-3 rounded-xl text-xs font-bold shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 mb-4"
+        >
+          <span className="material-symbols-outlined text-[18px]">add</span>
+          <span>Add Expense</span>
+        </Link>
+        
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-xs font-bold text-error hover:bg-error/5 transition-all active:scale-95 duration-150 w-full text-left"
+        >
+          <span className="material-symbols-outlined text-[20px]">logout</span>
+          <span>Logout</span>
+        </button>
+      </div>
+    </>
+  );
+
   return (
     <div className="min-h-screen flex bg-[#fcf8ff] text-[#1b1b24]">
       {/* Noise overlay */}
       <div className="noise-overlay"></div>
 
-      {/* Desktop Sidebar Nav matching Stitch */}
-      <aside className="fixed left-0 top-0 h-full w-[240px] z-50 bg-[#f0ecf9] shadow-md flex flex-col p-4 gap-4">
-        {/* Brand Logo */}
-        <div className="flex items-center gap-3 mb-6 px-2 py-3">
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg">
-            <span className="material-symbols-outlined !text-[24px]">payments</span>
-          </div>
-          <div>
-            <h1 className="font-extrabold text-lg text-primary tracking-tight leading-none">SplitFlow</h1>
-            <p className="text-[10px] text-on-surface-variant/75 font-semibold mt-0.5">Fintech Solutions</p>
-          </div>
-        </div>
+      {/* ── DESKTOP Sidebar (hidden on mobile) ── */}
+      <aside className="hidden md:flex fixed left-0 top-0 h-full w-[240px] z-50 bg-[#f0ecf9] shadow-md flex-col p-4 gap-4">
+        <SidebarContent />
+      </aside>
 
-        {/* Menu Links */}
-        <nav className="flex-1 flex flex-col gap-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-xs font-bold transition-all active:scale-95 duration-150 ${
-                isActive(item.path)
-                  ? 'bg-primary/10 text-primary font-extrabold border-r-4 border-primary'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-primary/5'
-              }`}
-            >
-              <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
-              <span>{item.label}</span>
-            </Link>
-          ))}
-        </nav>
-
-        {/* Bottom Actions */}
-        <div className="mt-auto pt-4 flex flex-col gap-1 border-t border-outline-variant/30">
-          <Link
-            to="/add-expense"
-            className="w-full bg-primary hover:bg-primary-container text-white py-3 rounded-xl text-xs font-bold shadow-md hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 mb-4"
-          >
-            <span className="material-symbols-outlined text-[18px]">add</span>
-            <span>Add Expense</span>
-          </Link>
-          
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-xs font-bold text-error hover:bg-error/5 transition-all active:scale-95 duration-150 w-full text-left"
-          >
-            <span className="material-symbols-outlined text-[20px]">logout</span>
-            <span>Logout</span>
-          </button>
-        </div>
+      {/* ── MOBILE Sidebar Overlay ── */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden backdrop-blur-sm"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      <aside
+        className={`fixed left-0 top-0 h-full w-[260px] z-50 bg-[#f0ecf9] shadow-2xl flex flex-col p-4 gap-4 transition-transform duration-300 md:hidden ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        {/* Close button inside mobile sidebar */}
+        <button
+          onClick={() => setSidebarOpen(false)}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+        >
+          <span className="material-symbols-outlined text-[18px]">close</span>
+        </button>
+        <SidebarContent />
       </aside>
 
       {/* Main content area */}
-      <div className="ml-[240px] flex-1 min-h-screen flex flex-col relative z-10">
-        {/* Sticky Header matching Stitch */}
-        <header className="w-full sticky top-0 z-40 bg-[#fcf8ff]/70 backdrop-blur-md flex items-center justify-between px-8 py-3 shadow-sm border-b border-outline-variant/20">
+      <div className="md:ml-[240px] flex-1 min-h-screen flex flex-col relative z-10">
+        {/* Sticky Header */}
+        <header className="w-full sticky top-0 z-40 bg-[#fcf8ff]/70 backdrop-blur-md flex items-center justify-between px-4 md:px-8 py-3 shadow-sm border-b border-outline-variant/20">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-extrabold text-on-surface tracking-tight">{getPageTitle()}</h2>
+            {/* Hamburger (mobile only) */}
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="md:hidden w-9 h-9 rounded-xl bg-primary/5 hover:bg-primary/10 flex items-center justify-center text-primary transition-colors"
+              aria-label="Open menu"
+            >
+              <span className="material-symbols-outlined text-[22px]">menu</span>
+            </button>
+            <h2 className="text-base md:text-xl font-extrabold text-on-surface tracking-tight">{getPageTitle()}</h2>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="relative">
+
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Search (hidden on small screens) */}
+            <div className="relative hidden sm:block">
               <input
-                className="bg-surface-container-low border-none rounded-full pl-4 pr-10 py-1.5 text-xs font-medium w-64 focus:ring-2 focus:ring-primary/20 transition-all outline-none"
+                className="bg-surface-container-low border-none rounded-full pl-4 pr-10 py-1.5 text-xs font-medium w-40 md:w-64 focus:ring-2 focus:ring-primary/20 transition-all outline-none"
                 placeholder="Search transactions..."
                 type="text"
               />
               <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
             </div>
-             <div className="relative">
+
+            {/* Notifications */}
+            <div className="relative">
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
                 className="w-9 h-9 rounded-full hover:bg-primary/5 transition-colors flex items-center justify-center text-on-surface-variant relative cursor-pointer"
@@ -200,7 +247,7 @@ function SidebarAndContent() {
               </button>
 
               {showNotifications && (
-                <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-[#1b1b24] rounded-2xl shadow-xl border border-outline-variant/30 overflow-hidden z-50 scale-in max-h-[400px] flex flex-col glass-card text-xs">
+                <div className="absolute right-0 mt-2 w-72 md:w-80 bg-white dark:bg-[#1b1b24] rounded-2xl shadow-xl border border-outline-variant/30 overflow-hidden z-50 scale-in max-h-[400px] flex flex-col glass-card text-xs">
                   <div className="px-4 py-3 bg-[#f0ecf9]/50 dark:bg-surface-container border-b border-outline-variant/20 flex items-center justify-between">
                     <span className="font-extrabold text-on-surface">Recent Alerts</span>
                     {unreadCount > 0 && (
@@ -232,10 +279,10 @@ function SidebarAndContent() {
                         >
                           <div className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-xs font-bold ${
                             notif.type === 'group'
-                              ? 'bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-fixed-dim'
+                              ? 'bg-primary/10 text-primary'
                               : notif.type === 'settlement'
-                              ? 'bg-secondary/10 text-secondary dark:bg-secondary-container/20 dark:text-secondary-fixed-dim'
-                              : 'bg-error-container text-on-error-container dark:bg-error-container/20 dark:text-error'
+                              ? 'bg-secondary/10 text-secondary'
+                              : 'bg-error-container text-on-error-container'
                           }`}>
                             <span className="material-symbols-outlined text-[16px]">
                               {notif.type === 'group' ? 'group_add' : notif.type === 'settlement' ? 'payments' : 'receipt'}
@@ -262,6 +309,8 @@ function SidebarAndContent() {
                 </div>
               )}
             </div>
+
+            {/* Avatar */}
             <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs uppercase shadow-sm overflow-hidden shrink-0">
               {user?.avatarUrl ? (
                 <img src={user.avatarUrl} alt="avatar" className="w-full h-full object-cover" />
@@ -272,8 +321,8 @@ function SidebarAndContent() {
           </div>
         </header>
 
-        {/* Viewport page content wrapper */}
-        <main className="flex-1 p-8 max-w-7xl w-full mx-auto">
+        {/* Page Content */}
+        <main className="flex-1 p-4 md:p-8 max-w-7xl w-full mx-auto">
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/groups" element={<Groups />} />
@@ -314,6 +363,8 @@ export default function App() {
       <Routes>
         <Route path="/login" element={!token ? <Login /> : <Navigate to="/dashboard" replace />} />
         <Route path="/register" element={!token ? <Register /> : <Navigate to="/dashboard" replace />} />
+        <Route path="/forgot-password" element={!token ? <ForgotPassword /> : <Navigate to="/dashboard" replace />} />
+        <Route path="/reset-password" element={!token ? <ResetPassword /> : <Navigate to="/dashboard" replace />} />
         <Route
           path="/*"
           element={
